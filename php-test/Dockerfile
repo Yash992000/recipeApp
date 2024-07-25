@@ -1,5 +1,5 @@
 #FROM quay.io/hellofresh/php70:7.1
-# FROM php:8.3.9-apache
+FROM php:8.3.9-apache
 
 # RUN apt-get update && apt upgrade -y
 
@@ -37,7 +37,7 @@
 #ADD ./docker/nginx/default.conf   /etc/nginx/sites-available/default
 
 # Environment variables to PHP-FPM
-RUN sed -i -e "s/;clear_env\s*=\s*no/clear_env = no/g" /etc/php/7.1/fpm/pool.d/www.conf
+RUN sed -i -e "s/;clear_env\s*=\s*no/clear_env = no/g" /etc/php/8.3.9/fpm/pool.d/www.conf
 
 # Set apps home directory.
 ENV APP_DIR /server/http
