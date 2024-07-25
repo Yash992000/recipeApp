@@ -1,5 +1,5 @@
 #FROM quay.io/hellofresh/php70:7.1
-FROM quay.io/root/php:8.3.9-apache
+FROM quay.io/food/php:8.3.9-apache
 
 # RUN apt-get update && apt upgrade -y
 
