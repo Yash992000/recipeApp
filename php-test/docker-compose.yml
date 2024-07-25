@@ -1,52 +1,156 @@
-version: '2'
-services:
+# version: '2'
+# services:
 
-    # Application container
+#     # Application container
             
-    php:
-        build: .
-        restart: unless-stopped
-        volumes:
-            - ./:/server/http
-        ports:
-            - "3306"
-            #- "443:443"
-        links:
-            - mysql
-        environment:
-            DEBUG: 'true'
+#     recipeproject:
+#         build: .
+#         restart: unless-stopped
+#         volumes:
+#             # - ./:/server/http
+#             - ./web:/var/www/html
+#         ports:
+#             - "8080:80"
+#             #- "443:443"
+#         links:
+#             - mysql
+#         environment:
+#             DEBUG: 'true'
 
-    mysql:
-        image: recipe
-        restart: unless-stopped
-        ports:
-            - "3306"
-        environment:
-            MYSQL_DB_CONNECTION: food
-            MYSQL_DB_NAME: food
-            MYSQL_USER: root
-            MYSQL_PASSWORD: 
-            SITE_URL : http://localhost/php/php-test/web/
-        networks:
-            impact: 
-            external: true
-
-
-    # postgres:
-    #     image: onjin/alpine-postgres:9.5
-    #     restart: unless-stopped
-    #     ports:
-    #         - "5432:5432"
-    #     environment:
-    #         LC_ALL: C.UTF-8
-    #         POSTGRES_USER: hellofresh
-    #         POSTGRES_PASSWORD: hellofresh
-    #         POSTGRES_DB: hellofresh
-
-    # redis:
-    #     image: sickp/alpine-redis:3.2.2
-    #     restart: unless-stopped
-    #     ports:
-    #         - "6379:6379"
+#     mysql:
+#         image: recipe
+#         # ports:
+#         #     - "3000"
+#         environment:
+#             MYSQL_DB_CONNECTION: food
+#             MYSQL_DB_NAME: food
+#             MYSQL_USER: root
+#             MYSQL_PASSWORD: 
+#             SITE_URL : http://localhost
+#         # networks:
+#         #     impact: 
+#         #     external: true
 
 
+# #     # postgres:
+# #     #     image: onjin/alpine-postgres:9.5
+# #     #     restart: unless-stopped
+# #     #     ports:
+# #     #         - "5432:5432"
+# #     #     environment:
+# #     #         LC_ALL: C.UTF-8
+# #     #         POSTGRES_USER: hellofresh
+# #     #         POSTGRES_PASSWORD: hellofresh
+# #     #         POSTGRES_DB: hellofresh
+
+# #     # redis:
+# #     #     image: sickp/alpine-redis:3.2.2
+# #     #     restart: unless-stopped
+# #     #     ports:
+# #     #         - "6379:6379"
+
+
+# # vesrion : "2"
+# # services: 
+# #     recipeProject:
+# #         build: .
+# #         image: recipe
+# #         ports: 
+# #             - "8080:80"
+# #         environments:
+# #             MYSQL_DB_CONNECTION: food
+# #             MYSQL_DB_NAME: food
+# #             MYSQL_USER: root
+# #             MYSQL_PASSWORD: 
+# #             SITE_URL : http://localhost
+# #         networks:
+# #             - impact
+
+# # networks:
+# #     impact:
+# #         external: true
+
+# version: '2'
+# services:
+#     recipeproject:
+#         build: .
+#         restart: unless-stopped
+#         volumes:
+#             - ./web:/var/www/html
+#         ports:
+#             - "8080:80"
+#         environment:
+#             MYSQL_DB_CONNECTION: "food"   # Replace with your actual DB connection string
+#             MYSQL_DB_NAME: "food"
+#             MYSQL_USER: "root"
+#             MYSQL_PASSWORD: ""   # Set your MySQL root password here
+#             SITE_URL: "http://localhost"
+#         depends_on:
+#             - mysql
+
+#     mysql:
+#         image: mysql:latest
+#         environment:
+#             MYSQL_ROOT_PASSWORD: "123"   # Set your MySQL root password here
+#             MYSQL_DATABASE: "food"
+#         ports:
+#             - "3306:3306"
+
+# version: '3'
+# services:
+
+#     recipeproject:
+#         build: .
+#         restart: unless-stopped
+#         volumes:
+#             - ./web:/var/www/html
+#         ports:
+#             - "8080:80"
+#         links:
+#             - mysql
+#         environment:
+#             DEBUG: 'true'
+#             MYSQL_DB_CONNECTION: mysql  # Make sure these variables are defined
+#             MYSQL_DB_NAME: food
+#             MYSQL_USER: root
+#             MYSQL_PASSWORD: ' ' # Ensure this is correctly set or provided securely
+#             SITE_URL: http://localhost:8080
+
+#     mysql:
+#         image: mysql:latest
+#         environment:
+#             MYSQL_DATABASE: food  # Ensure consistency with your database name
+#             MYSQL_ROOT_PASSWORD: ' '  # Replace with your MySQL root password
+
+
+version: '3'
+services:
+  webserver:
+    build: .
+    ports:
+      - "8080:80"
+    links:
+      - mysql
+    environment:
+      DEBUG: 'true'
+      MYSQL_DB_CONNECTION: mysql  # Use the service name defined below for MySQL connection
+      MYSQL_DB_NAME: food
+      MYSQL_USER: root
+      MYSQL_PASSWORD: " "  # Adjust as per your MySQL configuration
+      SITE_URL: http://localhost
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links:
+      - mysql:db
+    ports:
+      - "8181:80"
+    environment:
+      PMA_HOST: mysql
+      MYSQL_ROOT_PASSWORD: " "  # Same as MySQL root password
+
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: food
+      MYSQL_ROOT_PASSWORD: " "  # Replace with your MySQL root password

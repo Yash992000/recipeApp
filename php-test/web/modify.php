@@ -44,7 +44,7 @@
 <body>
     <?php
         // Connect to MySQL
-        $conn = mysqli_connect("localhost", "root", "", "food");
+        $conn = mysqli_connect("mysql", "root", " ", "food");
 
         // Check Connection
         if($conn === false){

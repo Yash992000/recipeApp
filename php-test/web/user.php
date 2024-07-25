@@ -14,7 +14,7 @@
         <div class="recipes">
             <?php
             // Connect to MySQL
-            $conn = mysqli_connect("localhost", "root", "", "food");
+            $conn = mysqli_connect("mysql", "root", " ", "food");
 
             // Check connection
             if ($conn === false) {

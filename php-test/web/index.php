@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Recipe Form</title>
+	<title>Recipes Form</title>
 	<style type="text/css">
 		body{
 			display: flex;
@@ -43,7 +43,7 @@
 </head>
 <body>
 	<div>
-		<form action="insert.php" method="post">
+		<form action="../insert.php" method="post">
 			<fieldset>
 				<legend>
 					Enter Recipe Details

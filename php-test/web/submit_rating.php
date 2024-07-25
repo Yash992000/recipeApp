@@ -1,6 +1,6 @@
 <?php
 // Connect to MySQL
-$conn = mysqli_connect("localhost", "root", "", "food");
+$conn = mysqli_connect("mysql", "root", " ", "food");
 
 // Check connection
 if ($conn === false) {
@@ -18,9 +18,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $sql = "INSERT INTO ratings (recipeId, rating) VALUES ('$recipeId', '$rating')";
 
         if (mysqli_query($conn, $sql)) {
-            echo "Rating submitted successfully.";
+            echo "<script>alert('Rating submitted successfully.');</script>";
             // Redirect back to user.php or any other page after successful submission
-            header("Location: user.php");
+            // header("Location: user.php");
+            echo "
+			    <script>window.location.href = 'user.php';</script>
+		    ";
             exit();
         } else {
             echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);

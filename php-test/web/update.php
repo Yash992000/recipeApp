@@ -1,6 +1,6 @@
 <?php
 	// Connect to MySQL
-	$conn = mysqli_connect("localhost", "root", "", "food");
+	$conn = mysqli_connect("mysql", "root", " ", "food");
 
 	// Check Connection
 	if($conn === false){
@@ -22,8 +22,9 @@
 	    // Update Data
 	    $sql = "UPDATE recipe SET recipeName='$recipeName', preparationTime='$preparationTime', difficultyLevel='$difficultyLevel', recipeCategory='$isVeg' WHERE recipeId='$recipeId'";
 	    if(mysqli_query($conn, $sql)){
-	        echo "Data updated successfully.";
-	        header("Location: view.php"); // Redirect to view.php after updating
+	        echo "<script>alert('Data updated successfully.');</script>";
+	        // header("Location: view.php"); // Redirect to view.php after updating
+			echo "<script>window.location.href = 'view.php';</script>";
 	        exit(); // Make sure to exit after redirecting
 	    } else {
 	        echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);

@@ -1,18 +1,14 @@
 <?php
-
-
 	// Connect Mysql
-
-	$conn = mysqli_connect("localhost", "root", "", "food");
-
+	$conn = mysqli_connect("mysql", "root", " ", "food");
+	
 	// Check Connection
-
 	if($conn === false){
 		die("Error : Could not connect. ".mysqli_connect_error());
 	}
-	else{
-		echo "Connected Successfully";
-	}
+	// else{
+	// 	echo "Connected Successfully";
+	// }
 
 	// Request data from form
 	$recipeName = $_REQUEST['recipeName'];
@@ -29,13 +25,16 @@
 
 
 	if(mysqli_query($conn, $sql)){
-		echo "Data inserted successfully...";
+		echo "<script>alert('Data inserted successfully...');</script>";
 		// echo nl2br("\n $name \n $email \n $contact \n $dob \n $gender");
-		header("Location: index.php");
+		// header("Location: index.php");
+		echo "
+			<script>window.location.href = 'index.php';</script>
+		";
         exit(); // Make sure to exit after redirecting
 	}
 	else{
-		echo "ERROR : Data Not Inserted.".mysqli_error($conn);
+		echo "<script>alert('ERROR : Data Not Inserted.');</script>";
 	}
 
 	mysqli_close($conn);

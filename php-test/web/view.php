@@ -67,7 +67,7 @@
             <tbody>
                 <?php
                 // Connect to MySQL
-                $conn = mysqli_connect("localhost", "root", "", "food");
+                $conn = mysqli_connect("mysql", "root", " ", "food");
 
                 // Check Connection
                 if ($conn === false) {
@@ -111,7 +111,11 @@
             </tbody>
         </table>
         <br><br>
-        <center><button id="index" onclick="window.location.href = 'index.php'">Insert Recipe</button></center>
+        <center>
+            <button id="index">
+                <a href="index.php" style="color:black; text-decoration: none;">Insert Recipe </a>
+            </button>
+        </center>
 		</fieldset>
     </form>
     </div>
