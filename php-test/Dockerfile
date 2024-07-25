@@ -34,7 +34,7 @@
 # service apache2 restart
 
 # Adds nginx configurations
-ADD ./docker/nginx/default.conf   /etc/nginx/sites-available/default
+#ADD ./docker/nginx/default.conf   /etc/nginx/sites-available/default
 
 # Environment variables to PHP-FPM
 RUN sed -i -e "s/;clear_env\s*=\s*no/clear_env = no/g" /etc/php/7.1/fpm/pool.d/www.conf
